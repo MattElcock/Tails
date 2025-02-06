@@ -1,15 +1,22 @@
+import { Auth } from "@/components/Auth";
 import { Text, View } from "react-native";
 
-export default function Index() {
+const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-9xl">Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <Auth>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text className="text-9xl">
+          Edit app/index.tsx to edit this screen.
+        </Text>
+      </View>
+    </Auth>
   );
-}
+};
+
+export default App;
