@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Alert, Text, TouchableOpacity } from "react-native";
 
 type Variant = "solid" | "ghost";
 type ColorScheme = "primary";
@@ -9,9 +9,16 @@ interface ButtonProps {
   colorScheme: ColorScheme;
   size: Size;
   children: string;
+  onPress?: () => void;
 }
 
-const Button = ({ children, variant, colorScheme, size }: ButtonProps) => {
+const Button = ({
+  children,
+  variant,
+  colorScheme,
+  size,
+  onPress,
+}: ButtonProps) => {
   const baseClass = "items-center";
 
   const buttonSizeClass: Record<Size, string> = {
@@ -42,6 +49,7 @@ const Button = ({ children, variant, colorScheme, size }: ButtonProps) => {
   return (
     <TouchableOpacity
       className={`${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${roundedAndShadow}`}
+      onPress={onPress}
     >
       <Text className={`font-semibold text-black ${textSizeStyle}`}>
         {children}
