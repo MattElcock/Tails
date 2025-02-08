@@ -1,4 +1,5 @@
-import { Alert, Text, TouchableOpacity } from "react-native";
+import { ReactNode } from "react";
+import { Text, TouchableOpacity } from "react-native";
 
 type Variant = "solid" | "ghost";
 type ColorScheme = "primary";
@@ -8,7 +9,10 @@ interface ButtonProps {
   variant: Variant;
   colorScheme: ColorScheme;
   size: Size;
-  children: string;
+  children: ReactNode;
+  startIcon?: ReactNode;
+  fontWeight?: string;
+  className?: string;
   onPress?: () => void;
 }
 
@@ -17,6 +21,9 @@ const Button = ({
   variant,
   colorScheme,
   size,
+  fontWeight = "font-semibold",
+  startIcon,
+  className,
   onPress,
 }: ButtonProps) => {
   const baseClass = "items-center";
@@ -48,10 +55,11 @@ const Button = ({
 
   return (
     <TouchableOpacity
-      className={`${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${roundedAndShadow}`}
+      className={`flex-row gap-3 justify-center ${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${roundedAndShadow} ${className}`}
       onPress={onPress}
     >
-      <Text className={`font-semibold text-black ${textSizeStyle}`}>
+      {startIcon}
+      <Text className={`${fontWeight} text-black ${textSizeStyle}`}>
         {children}
       </Text>
     </TouchableOpacity>
