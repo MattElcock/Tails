@@ -16,7 +16,7 @@ const LoginPage = () => {
       <WelcomeMessage />
       <View className="mt-20 gap-3">
         <Button variant="solid" colorScheme="primary" size="large">
-          Log In
+          Log in
         </Button>
         <Button
           variant="ghost"
@@ -24,7 +24,7 @@ const LoginPage = () => {
           size="medium"
           onPress={handleCreateAccountPress}
         >
-          Create an Account
+          Create an account
         </Button>
       </View>
     </PageLayout>
