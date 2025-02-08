@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Pressable, Text } from "react-native";
 
 type Variant = "solid" | "ghost";
 type ColorScheme = "primary";
@@ -54,15 +54,13 @@ const Button = ({
   const textSizeStyle = textSizeClass[size];
 
   return (
-    <TouchableOpacity
+    <Pressable
       className={`flex-row gap-3 justify-center ${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${roundedAndShadow} ${className}`}
       onPress={onPress}
     >
       {startIcon}
-      <Text className={`${fontWeight} text-black ${textSizeStyle}`}>
-        {children}
-      </Text>
-    </TouchableOpacity>
+      <Text className={`${fontWeight} ${textSizeStyle}`}>{children}</Text>
+    </Pressable>
   );
 };
 
