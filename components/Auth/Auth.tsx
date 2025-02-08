@@ -10,11 +10,29 @@ interface AuthProps {
 const Auth = ({ children }: AuthProps) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
+  const [sessionActive, setSessionActive] = useState(true);
 
-  function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
+  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
     setUser(user);
     if (initializing) setInitializing(false);
-  }
+    if (user) {
+      checkSessionValidity(user);
+    }
+  };
+
+  const checkSessionValidity = async (user: FirebaseAuthTypes.User) => {
+    try {
+      const token = await user.getIdToken(true);
+      if (!token) {
+        setSessionActive(false);
+      } else {
+        setSessionActive(true);
+      }
+    } catch (error) {
+      console.error("Error checking session validity", error);
+      setSessionActive(false);
+    }
+  };
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
@@ -23,7 +41,7 @@ const Auth = ({ children }: AuthProps) => {
 
   if (initializing) return null;
 
-  if (!user) {
+  if (!user || !sessionActive) {
     return <Redirect href="/login" />;
   }
 

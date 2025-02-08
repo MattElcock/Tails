@@ -11,9 +11,7 @@ const App = () => {
           alignItems: "center",
         }}
       >
-        <Text className="text-9xl">
-          Edit app/index.tsx to edit this screen.
-        </Text>
+        <Text className="text-9xl">Logged in</Text>
       </View>
     </Auth>
   );
