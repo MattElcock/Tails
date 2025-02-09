@@ -41,6 +41,10 @@ const Login = () => {
       });
   };
 
+  const handleResetPasswordPress = () => {
+    router.push("/login/resetPassword");
+  };
+
   return (
     <View className="gap-5">
       <Controller
@@ -73,6 +77,7 @@ const Login = () => {
                 colorScheme="primary"
                 size="small"
                 className="self-end px-0"
+                onPress={handleResetPasswordPress}
               >
                 Forgot password?
               </Button>

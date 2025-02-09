@@ -78,8 +78,10 @@ const CreateAccount = () => {
   const password = watch("password");
 
   return (
-    <PageLayout backLink={{ href: "/login", text: "login" }}>
-      <Text className="text-4xl font-medium">Create an account</Text>
+    <PageLayout
+      title="Create an account"
+      backLink={{ href: "/login", text: "login" }}
+    >
       <View className="gap-5">
         <Controller
           control={control}
@@ -122,7 +124,7 @@ const CreateAccount = () => {
           control={control}
           rules={{
             required: "Required",
-            validate: (value) => password === value || "Passwords do not match",
+            validate: (value) => password === value || "Passwords don't match",
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input

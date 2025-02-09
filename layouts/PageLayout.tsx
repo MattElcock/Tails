@@ -2,7 +2,7 @@ import { Button } from "@/components/Button";
 import { Href, useRouter } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { ReactNode } from "react";
-import { StatusBar, View } from "react-native";
+import { StatusBar, View, Text } from "react-native";
 
 interface BackLink {
   href: Href;
@@ -10,12 +10,18 @@ interface BackLink {
 }
 
 interface PageLayoutProps {
+  title?: string;
   backLink?: BackLink;
   className?: string;
   children: ReactNode;
 }
 
-const PageLayout = ({ children, className, backLink }: PageLayoutProps) => {
+const PageLayout = ({
+  backLink,
+  children,
+  className,
+  title,
+}: PageLayoutProps) => {
   const router = useRouter();
 
   const handleBackClick = () => {
@@ -36,7 +42,7 @@ const PageLayout = ({ children, className, backLink }: PageLayoutProps) => {
           Back to {backLink.text}
         </Button>
       )}
-
+      {title && <Text className="text-4xl font-medium">{title}</Text>}
       {children}
     </View>
   );
