@@ -53,6 +53,7 @@ const CreateAccount = () => {
   } = useForm({
     defaultValues: { emailAddress: "", password: "", confirmPassword: "" },
   });
+
   const router = useRouter();
 
   const onSubmit = (data: FormFields) => {

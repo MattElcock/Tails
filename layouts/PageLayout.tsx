@@ -22,7 +22,7 @@ const PageLayout = ({ children, className, backLink }: PageLayoutProps) => {
     router.push(backLink!.href);
   };
   return (
-    <View className={`h-screen px-10 py-5 bg-background ${className} gap-3`}>
+    <View className={`h-screen px-10 py-5 bg-background gap-3 ${className} `}>
       <StatusBar className="bg-background" barStyle="dark-content" />
       {backLink && (
         <Button
