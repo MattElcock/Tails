@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from "lucide-react-native";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
 
 type Type = "text" | "email" | "password";
@@ -8,9 +8,10 @@ interface InputProps extends TextInputProps {
   label: string;
   type: Type;
   errorMessage?: string;
+  action?: ReactNode;
 }
 
-const Input = ({ label, type, errorMessage, ...rest }: InputProps) => {
+const Input = ({ label, type, errorMessage, action, ...rest }: InputProps) => {
   const [isSecure, setIsSecure] = useState(type === "password");
 
   const togglePassword = () => {
@@ -19,9 +20,12 @@ const Input = ({ label, type, errorMessage, ...rest }: InputProps) => {
 
   return (
     <View className="gap-2">
-      <Text className={`text-xl ${errorMessage && "text-red-500"}`}>
-        {label}
-      </Text>
+      <View className="flex-row items-center justify-between">
+        <Text className={`text-xl ${errorMessage && "text-red-500"}`}>
+          {label}
+        </Text>
+        {action}
+      </View>
       <View className="flex-row items-center">
         <TextInput
           className={`border rounded-lg text-xl px-4 py-3 flex-1  ${

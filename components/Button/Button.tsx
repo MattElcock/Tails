@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { Pressable, Text } from "react-native";
 
-type Variant = "solid" | "ghost";
+type Variant = "solid" | "ghost" | "outline";
 type ColorScheme = "primary";
-type Size = "large" | "medium";
+type Size = "large" | "medium" | "small";
 
 interface ButtonProps {
   variant: Variant;
@@ -31,23 +31,26 @@ const Button = ({
   const buttonSizeClass: Record<Size, string> = {
     large: "p-6",
     medium: "p-4",
+    small: "p-2",
   };
 
   const textSizeClass: Record<Size, string> = {
     large: "text-2xl",
     medium: "text-xl",
+    small: "text-lg",
   };
 
   const buttonColorClass: Record<Variant, Record<ColorScheme, string>> = {
     solid: {
-      primary: "bg-primary",
+      primary: "bg-primary rounded-lg",
+    },
+    outline: {
+      primary: "border-2 rounded-lg border-primary",
     },
     ghost: {
       primary: "",
     },
   };
-
-  const roundedAndShadow = variant === "solid" ? "rounded-lg shadow-lg" : "";
 
   const buttonColorStyle = buttonColorClass[variant][colorScheme];
   const buttonSizeStyle = buttonSizeClass[size];
@@ -55,7 +58,8 @@ const Button = ({
 
   return (
     <Pressable
-      className={`flex-row gap-3 justify-center ${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${roundedAndShadow} ${className}`}
+      className={`flex-row gap-3 justify-center ${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${className}`}
+      android_ripple={{ color: "" }}
       onPress={onPress}
     >
       {startIcon}

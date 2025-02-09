@@ -18,7 +18,7 @@ const ThatMeansHello = () => {
 const WelcomeMessage = () => {
   return (
     <View className="items-center">
-      <View className="mb-[-10px]">
+      <View className="mb-[-20px]">
         <DogHello />
       </View>
       <View className="flex-row items-center gap-8">
@@ -32,7 +32,7 @@ const WelcomeMessage = () => {
           <RabbitHello />
         </View>
       </View>
-      <View className="mt-[-10px]">
+      <View className="mt-[-20px]">
         <CatHello />
       </View>
     </View>
