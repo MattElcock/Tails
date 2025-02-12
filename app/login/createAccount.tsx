@@ -1,3 +1,4 @@
+import useCreateUser from "@/api/users/createUser";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { PageLayout } from "@/layouts/PageLayout";
@@ -8,6 +9,8 @@ import { Controller, useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 
 interface FormFields {
+  firstName: string;
+  lastName: string;
   emailAddress: string;
   password: string;
   confirmPassword: string;
@@ -45,22 +48,42 @@ const PasswordRulesList = ({ password }: PasswordRulesListProps) => {
 };
 
 const CreateAccount = () => {
+  const router = useRouter();
+  const { mutate, isPending } = useCreateUser();
   const {
     control,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm({
-    defaultValues: { emailAddress: "", password: "", confirmPassword: "" },
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
-
-  const router = useRouter();
 
   const onSubmit = (data: FormFields) => {
     auth()
       .createUserWithEmailAndPassword(data.emailAddress, data.password)
-      .then(() => {
-        router.push("/(app)/welcome");
+      .then((user) => {
+        mutate(
+          {
+            firestoreUid: user.user.uid,
+            firstName: data.firstName,
+            lastName: data.lastName,
+          },
+          {
+            onSuccess: () => {
+              router.push("/(app)/welcome");
+            },
+            onError: (error) => {
+              console.error(error);
+            },
+          }
+        );
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -77,12 +100,50 @@ const CreateAccount = () => {
 
   const password = watch("password");
 
+  if (isPending) {
+    return <Text>Loading</Text>;
+  }
+
   return (
     <PageLayout
       title="Create an account"
       backLink={{ href: "/login", text: "login" }}
     >
       <View className="gap-5">
+        <Controller
+          control={control}
+          rules={{
+            required: "Required",
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              label="First name"
+              type="text"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.emailAddress?.message as string}
+            />
+          )}
+          name="firstName"
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: "Required",
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              label="Last name"
+              type="text"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.emailAddress?.message as string}
+            />
+          )}
+          name="lastName"
+        />
         <Controller
           control={control}
           rules={{
