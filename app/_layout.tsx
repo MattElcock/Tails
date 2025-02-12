@@ -4,11 +4,12 @@ import { Auth } from "@/components/Auth";
 
 export default function RootLayout() {
   return (
-    <Auth>
-      <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="login" />
+      <Auth>
         <Stack.Screen name="index" />
-        <Stack.Screen name="login" />
-      </Stack>
-    </Auth>
+        <Stack.Screen name="home" />
+      </Auth>
+    </Stack>
   );
 }

@@ -1,6 +1,8 @@
+import { PageLayout } from "@/layouts/PageLayout";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { Redirect } from "expo-router";
+import { Redirect, useRootNavigationState } from "expo-router";
 import { ReactNode, useEffect, useState } from "react";
+import { View, Text } from "react-native";
 
 interface AuthProps {
   children: ReactNode;
@@ -11,6 +13,7 @@ const Auth = ({ children }: AuthProps) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
   const [sessionActive, setSessionActive] = useState(true);
+  const navigationState = useRootNavigationState(); // Ensures expo-router is ready
 
   const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
     setUser(user);
@@ -39,7 +42,7 @@ const Auth = ({ children }: AuthProps) => {
     return subscriber;
   }, []);
 
-  if (initializing) return null;
+  if (initializing || !navigationState?.key) return null;
 
   if (!user || !sessionActive) {
     return <Redirect href="/login" />;

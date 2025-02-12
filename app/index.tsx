@@ -1,17 +1,12 @@
-import { Text, View } from "react-native";
+import { PageLayout } from "@/layouts/PageLayout";
+import { Text } from "react-native";
 
-const App = () => {
+const Welcome = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-9xl">Logged in</Text>
-    </View>
+    <PageLayout title="Welcome">
+      <Text>// TODO</Text>
+    </PageLayout>
   );
 };
 
-export default App;
+export default Welcome;
