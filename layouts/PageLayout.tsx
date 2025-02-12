@@ -27,6 +27,7 @@ const PageLayout = ({
   const handleBackClick = () => {
     router.push(backLink!.href);
   };
+
   return (
     <View className={`h-screen px-10 py-5 bg-background gap-10 ${className} `}>
       <StatusBar className="bg-background" barStyle="dark-content" />
@@ -49,7 +50,7 @@ const PageLayout = ({
           title
         )}
       </View>
-      <View>{children}</View>
+      <View className="flex-1">{children}</View>
     </View>
   );
 };
