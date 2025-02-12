@@ -26,7 +26,7 @@ const Login = () => {
     auth()
       .signInWithEmailAndPassword(data.emailAddress, data.password)
       .then(() => {
-        router.push("/");
+        router.push("/welcome");
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
