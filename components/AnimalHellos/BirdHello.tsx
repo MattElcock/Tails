@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 const BirdHello = () => {
   return (
     <View className="items-center">
-      <Bird size={70} />
+      <Bird size={60} strokeWidth={1} />
       <Text className="text-2xl">*chirp*</Text>
     </View>
   );
