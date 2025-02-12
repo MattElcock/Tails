@@ -97,6 +97,7 @@ const Login = () => {
         colorScheme="primary"
         size="medium"
         onPress={handleSubmit(onSubmit)}
+        className="mt-5"
       >
         Log in
       </Button>
@@ -125,7 +126,7 @@ const CreateAccount = () => {
 
 const LoginPage = () => {
   return (
-    <PageLayout className="gap-8">
+    <PageLayout className="gap-8 pt-10">
       <WelcomeMessage />
       <View className="gap-3">
         <Login />
