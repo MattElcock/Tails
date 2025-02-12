@@ -1,4 +1,3 @@
-import { Auth } from "@/components/Auth";
 import { Stepper } from "@/components/Stepper";
 import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
@@ -52,18 +51,16 @@ const Welcome = () => {
   const router = useRouter();
 
   const handleComplete = () => {
-    router.push("/");
+    router.push("/(app)");
   };
 
   return (
-    <Auth>
-      <PageLayout title="An important message">
-        <Stepper
-          steps={[<StepOne />, <StepTwo />, <StepThree />]}
-          onComplete={handleComplete}
-        />
-      </PageLayout>
-    </Auth>
+    <PageLayout title="An important message">
+      <Stepper
+        steps={[<StepOne />, <StepTwo />, <StepThree />]}
+        onComplete={handleComplete}
+      />
+    </PageLayout>
   );
 };
 
