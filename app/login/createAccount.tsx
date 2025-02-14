@@ -77,7 +77,7 @@ const CreateAccount = () => {
           },
           {
             onSuccess: () => {
-              router.push("/(app)/welcome");
+              router.push("/(app)");
             },
             onError: (error) => {
               console.error(error);

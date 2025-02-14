@@ -1,3 +1,4 @@
+import useUpdateMe from "@/api/users/updateMe";
 import { Stepper } from "@/components/Stepper";
 import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
@@ -49,9 +50,20 @@ const StepThree = () => {
 
 const Welcome = () => {
   const router = useRouter();
+  const { mutate } = useUpdateMe();
 
   const handleComplete = () => {
-    router.push("/(app)");
+    mutate(
+      { seenAppPurposeDisclaimer: new Date(Date.now()).toISOString() },
+      {
+        onSuccess: () => {
+          router.push("/(app)");
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      }
+    );
   };
 
   return (

@@ -1,16 +1,21 @@
-import useUser from "@/api/users/useUser";
+import useMe from "@/api/users/useMe";
 import { PageLayout } from "@/layouts/PageLayout";
+import { Redirect } from "expo-router";
 import { Text, View } from "react-native";
 
 const App = () => {
-  const { isLoading, data: user } = useUser();
+  const { isLoading, data: me } = useMe();
 
   if (isLoading) {
     return <Text>Loading</Text>;
   }
 
-  if (!user) {
+  if (!me) {
     return <Text>Error</Text>;
+  }
+
+  if (!me.seenAppPurposeDisclaimer) {
+    return <Redirect href="/(app)/welcome" />;
   }
 
   return (
@@ -18,9 +23,11 @@ const App = () => {
       title={
         <View>
           <Text className="text-3xl text-accent font-medium">Wooof!</Text>
-          <Text className="text-4xl font-medium">
-            Good morning, {user.firstName}!
-          </Text>
+          {me.firstName && (
+            <Text className="text-4xl font-medium">
+              Good morning, {me.firstName}!
+            </Text>
+          )}
         </View>
       }
     >
