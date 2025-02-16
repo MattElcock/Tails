@@ -1,11 +1,13 @@
-import { Bird } from "lucide-react-native";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 const BirdHello = () => {
   return (
     <View className="items-center">
-      <Bird size={60} strokeWidth={1} />
-      <Text className="text-2xl">*chirp*</Text>
+      <Image
+        source={require("@/assets/images/bird.png")}
+        style={{ width: 75, height: 70 }}
+      />
+      <Text className="text-lg">*chirp*</Text>
     </View>
   );
 };

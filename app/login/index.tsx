@@ -26,7 +26,7 @@ const Login = () => {
     auth()
       .signInWithEmailAndPassword(data.emailAddress, data.password)
       .then(() => {
-        router.push("/(app)/welcome");
+        router.push("/(app)");
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
@@ -82,7 +82,7 @@ const Login = () => {
                 Forgot password?
               </Button>
             }
-            label="Pasword"
+            label="Password"
             type="password"
             onBlur={onBlur}
             onChangeText={onChange}

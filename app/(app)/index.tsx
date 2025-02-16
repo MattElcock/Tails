@@ -1,4 +1,5 @@
 import useMe from "@/api/users/useMe";
+import { ListPets } from "@/containers/ListPets";
 import { PageLayout } from "@/layouts/PageLayout";
 import { Redirect } from "expo-router";
 import { Text, View } from "react-native";
@@ -31,8 +32,7 @@ const App = () => {
         </View>
       }
     >
-      <Text className="text-3xl font-medium">Your pets</Text>
-      <Text>// TODO</Text>
+      <ListPets />
     </PageLayout>
   );
 };

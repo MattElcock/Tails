@@ -1,11 +1,13 @@
-import { Cat } from "lucide-react-native";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 const CatHello = () => {
   return (
     <View className="items-center">
-      <Cat size={60} strokeWidth={1} />
-      <Text className="text-2xl">*meow*</Text>
+      <Image
+        source={require("@/assets/images/cat.png")}
+        style={{ width: 73, height: 70 }}
+      />
+      <Text className="text-lg">*meow*</Text>
     </View>
   );
 };

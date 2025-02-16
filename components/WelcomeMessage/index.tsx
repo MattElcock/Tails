@@ -3,7 +3,7 @@ import { CatHello } from "@/components/AnimalHellos/CatHello";
 import { DogHello } from "@/components/AnimalHellos/DogHello";
 import { RabbitHello } from "@/components/AnimalHellos/RabbitHello";
 import { RatHello } from "@/components/AnimalHellos/RatHello";
-import { TurtleHello } from "@/components/AnimalHellos/TurtleHello";
+import { HamsterHello } from "@/components/AnimalHellos/HamsterHello";
 import { Text, View } from "react-native";
 
 const ThatMeansHello = () => {
@@ -18,21 +18,21 @@ const ThatMeansHello = () => {
 const WelcomeMessage = () => {
   return (
     <View className="items-center">
-      <View className="mb-[-20px]">
+      <View className="mb-[-50px]">
         <DogHello />
       </View>
-      <View className="flex-row items-center gap-8">
-        <View className="gap-8">
-          <RatHello />
+      <View className="flex-row items-center gap-7">
+        <View className="gap-7">
+          <RabbitHello />
           <BirdHello />
         </View>
         <ThatMeansHello />
-        <View className="gap-8">
-          <TurtleHello />
-          <RabbitHello />
+        <View className="gap-7">
+          <HamsterHello />
+          <RatHello />
         </View>
       </View>
-      <View className="mt-[-20px]">
+      <View className="mt-[-50px]">
         <CatHello />
       </View>
     </View>
