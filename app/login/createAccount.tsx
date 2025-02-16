@@ -122,7 +122,7 @@ const CreateAccount = () => {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              errorMessage={errors.emailAddress?.message as string}
+              errorMessage={errors.emailAddress?.message}
             />
           )}
           name="firstName"
