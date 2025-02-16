@@ -1,3 +1,5 @@
+import { ACCENT_COLOUR, BACKGROUND_COLOUR, PRIMARY_COLOUR } from "./constants";
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
@@ -11,9 +13,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#FFD3B5",
-        accent: "#FF8080",
-        background: "#FBF5E9",
+        primary: PRIMARY_COLOUR,
+        accent: ACCENT_COLOUR,
+        background: BACKGROUND_COLOUR,
       },
     },
   },
