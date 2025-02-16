@@ -1,11 +1,13 @@
-import { Dog } from "lucide-react-native";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 const DogHello = () => {
   return (
     <View className="items-center">
-      <Dog size={60} strokeWidth={1} />
-      <Text className="text-2xl">*woof*</Text>
+      <Image
+        source={require("@/assets/images/dog.png")}
+        style={{ width: 63, height: 90 }}
+      />
+      <Text className="text-lg">*woof*</Text>
     </View>
   );
 };
