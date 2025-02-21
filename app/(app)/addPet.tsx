@@ -1,13 +1,22 @@
 import { furColourOptions, petOptions } from "@/api/pets/constants";
 import { FurColours, PetTypes } from "@/api/pets/types";
+import useAddPet from "@/api/pets/useAddPet";
 import { Button } from "@/components/Button";
 import { CheckboxInput } from "@/components/CheckboxInput";
 import { DatePicker } from "@/components/DatePicker";
 import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
 import { PageLayout } from "@/layouts/PageLayout";
+import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
+
+interface FormFields {
+  name: string;
+  type: PetTypes;
+  dateOfBirth: Date;
+  furColour: FurColours[];
+}
 
 const sortedPetOptions = petOptions.sort((a, b) => {
   return a.label.toLowerCase().localeCompare(b.label.toLowerCase());
@@ -19,15 +28,28 @@ const AddPet = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<{
-    name: string | undefined;
-    type: PetTypes | undefined;
-    furColour: FurColours[] | undefined;
-    dateOfBirth: Date | undefined;
-  }>();
+  } = useForm<FormFields>();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const router = useRouter();
+  const { mutate } = useAddPet();
+
+  const onSubmit = (data: FormFields) => {
+    mutate(
+      {
+        name: data.name,
+        type: data.type,
+        dateOfBirth: data.dateOfBirth,
+        furColour: data.furColour,
+      },
+      {
+        onSuccess: () => {
+          router.push("/(app)");
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      }
+    );
   };
 
   const type = watch("type");

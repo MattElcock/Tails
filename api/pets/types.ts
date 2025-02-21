@@ -41,3 +41,22 @@ export enum FurColours {
   Silver = "silver",
   Fawn = "fawn",
 }
+
+export enum Permission {
+  View = "view",
+  Edit = "edit",
+  Admin = "admin",
+}
+
+export interface UserPermission {
+  userId: string;
+  permission: Permission;
+}
+
+export interface FirestoreDocumentPet {
+  name: string;
+  type: PetTypes;
+  dateOfBirth: Date;
+  furColour: FurColours[];
+  sharedWith: UserPermission[];
+}
