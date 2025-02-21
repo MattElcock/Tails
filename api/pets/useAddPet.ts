@@ -15,7 +15,7 @@ interface AddPetData {
   name: string;
   type: PetTypes;
   dateOfBirth: Date;
-  furColour: FurColours[];
+  furColour?: FurColours[];
 }
 
 const useAddPet = () => {
@@ -30,14 +30,14 @@ const useAddPet = () => {
       name: pet.name,
       type: pet.type,
       dateOfBirth: pet.dateOfBirth,
-      furColour: pet.furColour,
-      sharedWith: [
-        {
-          userId: firestoreUser?.uid,
-          permission: Permission.Admin,
-        },
-      ],
+      sharedWith: {
+        [firestoreUser.uid]: Permission.Admin,
+      },
     };
+
+    if (pet.furColour) {
+      reqData.furColour = pet.furColour;
+    }
 
     await firestore().collection(PETS_COLLECTION).doc(uuidv4()).set(reqData);
   };
