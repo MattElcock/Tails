@@ -2,7 +2,7 @@ import { Button } from "@/components/Button";
 import { Href, useRouter } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { ReactNode } from "react";
-import { StatusBar, View, Text } from "react-native";
+import { StatusBar, View, Text, ScrollView } from "react-native";
 
 interface BackLink {
   href: Href;
@@ -29,7 +29,7 @@ const PageLayout = ({
   };
 
   return (
-    <View className={`h-screen px-10 py-5 bg-background gap-10 ${className} `}>
+    <ScrollView className={`h-screen px-5 bg-background gap-10 ${className} `}>
       <StatusBar className="bg-background" barStyle="dark-content" />
       <View>
         {backLink && (
@@ -51,7 +51,7 @@ const PageLayout = ({
         )}
       </View>
       <View className="flex-1">{children}</View>
-    </View>
+    </ScrollView>
   );
 };
 

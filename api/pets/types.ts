@@ -49,14 +49,13 @@ export enum Permission {
 }
 
 export interface UserPermission {
-  userId: string;
-  permission: Permission;
+  [userId: string]: Permission;
 }
 
 export interface FirestoreDocumentPet {
   name: string;
   type: PetTypes;
   dateOfBirth: Date;
-  furColour: FurColours[];
-  sharedWith: UserPermission[];
+  furColour?: FurColours[];
+  sharedWith: UserPermission;
 }
