@@ -39,3 +39,9 @@ export const furColourOptions = [
   { label: "Cream", value: FurColours.Cream },
   { label: "Fawn", value: FurColours.Fawn },
 ];
+
+// firestore collection names
+export const PETS_COLLECTION = "pets";
+
+// cache keys
+export const PETS_LIST_KEY = ["pets"];
