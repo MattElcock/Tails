@@ -56,7 +56,7 @@ const AddPet = () => {
   const hasFur = sortedPetOptions.find((pet) => pet.value === type)?.hasFur;
 
   return (
-    <PageLayout title="Add a pet" backLink={{ href: "/(app)", text: "home" }}>
+    <PageLayout title="Add a pet">
       <View className="gap-5">
         <Controller
           control={control}
