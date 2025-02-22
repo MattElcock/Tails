@@ -1,4 +1,5 @@
 import useCheckSession from "@/api/authentication/useCheckSession";
+import { ACCENT_COLOUR } from "@/constants";
 import auth from "@react-native-firebase/auth";
 import { Redirect, Stack } from "expo-router";
 import { Text } from "react-native";
@@ -19,10 +20,16 @@ export default function AppLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="welcome" />
-      <Stack.Screen name="addPet" />
+    <Stack
+      screenOptions={{
+        headerStyle: { backgroundColor: ACCENT_COLOUR },
+        statusBarBackgroundColor: ACCENT_COLOUR,
+        statusBarStyle: "dark",
+      }}
+    >
+      <Stack.Screen name="index" options={{ title: "" }} />
+      <Stack.Screen name="addPet" options={{ title: "" }} />
+      <Stack.Screen name="welcome" options={{ title: "" }} />
     </Stack>
   );
 }

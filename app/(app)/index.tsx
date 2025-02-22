@@ -20,18 +20,7 @@ const App = () => {
   }
 
   return (
-    <PageLayout
-      title={
-        <View>
-          <Text className="text-3xl text-accent font-medium">Wooof!</Text>
-          {me.firstName && (
-            <Text className="text-4xl font-medium">
-              Good morning, {me.firstName}!
-            </Text>
-          )}
-        </View>
-      }
-    >
+    <PageLayout>
       <ListPets />
     </PageLayout>
   );

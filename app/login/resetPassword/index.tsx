@@ -38,10 +38,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <PageLayout
-      title="Reset password"
-      backLink={{ href: "/login", text: "login" }}
-    >
+    <PageLayout title="Reset password">
       <View className="gap-5">
         <View className="gap-3">
           <Text className="text-xl text-accent font-semibold">

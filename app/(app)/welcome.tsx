@@ -57,7 +57,7 @@ const Welcome = () => {
       { seenAppPurposeDisclaimer: new Date(Date.now()).toISOString() },
       {
         onSuccess: () => {
-          router.push("/(app)");
+          router.replace("/(app)");
         },
         onError: (error) => {
           console.error(error);

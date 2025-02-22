@@ -105,10 +105,7 @@ const CreateAccount = () => {
   }
 
   return (
-    <PageLayout
-      title="Create an account"
-      backLink={{ href: "/login", text: "login" }}
-    >
+    <PageLayout title="Create an account">
       <View className="gap-5">
         <Controller
           control={control}

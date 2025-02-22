@@ -3,7 +3,7 @@ import { Input } from "@/components/Input";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { PageLayout } from "@/layouts/PageLayout";
 import auth from "@react-native-firebase/auth";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { Text, ToastAndroid, View } from "react-native";
 
@@ -20,6 +20,7 @@ const Login = () => {
   } = useForm({
     defaultValues: { emailAddress: "", password: "" },
   });
+
   const router = useRouter();
 
   const onSubmit = (data: FormFields) => {
@@ -126,16 +127,18 @@ const CreateAccount = () => {
 
 const LoginPage = () => {
   return (
-    <PageLayout className="gap-8 pt-10">
-      <WelcomeMessage />
-      <View className="gap-3">
-        <Login />
-        <View className="flex-row items-center gap-3">
-          <View className="border-b-[1px] border-black flex-1" />
-          <Text className="text-lg">Or</Text>
-          <View className="border-b-[1px] border-black flex-1" />
+    <PageLayout>
+      <View className="mt-5">
+        <WelcomeMessage />
+        <View className="gap-3">
+          <Login />
+          <View className="flex-row items-center gap-3">
+            <View className="border-b-[1px] border-black flex-1" />
+            <Text className="text-lg">Or</Text>
+            <View className="border-b-[1px] border-black flex-1" />
+          </View>
+          <CreateAccount />
         </View>
-        <CreateAccount />
       </View>
     </PageLayout>
   );
