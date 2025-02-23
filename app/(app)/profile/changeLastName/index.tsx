@@ -2,6 +2,7 @@ import useUpdateMe from "@/api/users/updateMe";
 import useMe from "@/api/users/useMe";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { Loading } from "@/containers/Loading";
 import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
@@ -23,7 +24,7 @@ const ChangeLastName = () => {
   } = useForm<FormFields>({ defaultValues: { lastName: me?.lastName } });
 
   if (isLoading || isRefetching) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   if (!me) {

@@ -1,6 +1,8 @@
 import useMe from "@/api/users/useMe";
 import { Button } from "@/components/Button";
 import { LabelledValue } from "@/components/LabelledValue";
+import { ACCENT_COLOUR } from "@/constants";
+import { Loading } from "@/containers/Loading";
 import { PageLayout } from "@/layouts/PageLayout";
 import auth from "@react-native-firebase/auth";
 import { useRouter } from "expo-router";
@@ -12,7 +14,7 @@ import {
   LogOut,
 } from "lucide-react-native";
 import { ReactNode } from "react";
-import { Text, ToastAndroid, View } from "react-native";
+import { ActivityIndicator, Text, ToastAndroid, View } from "react-native";
 
 interface SectionProps {
   title: string;
@@ -33,7 +35,7 @@ const Profile = () => {
   const router = useRouter();
 
   if (isLoading || isRefetching) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   if (!me) {
