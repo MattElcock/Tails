@@ -5,14 +5,13 @@ import { ScrollView, Text, View } from "react-native";
 interface PageLayoutProps {
   title?: ReactNode;
   scrollContainer?: boolean;
-  className?: string;
   children: ReactNode;
 }
 
 interface ContainerProps {
   children: ReactNode;
   type: "scroll" | "view";
-  className?: string;
+  className: string;
 }
 
 const Container = ({ children, type, className }: ContainerProps) => {
@@ -25,14 +24,13 @@ const Container = ({ children, type, className }: ContainerProps) => {
 
 const PageLayout = ({
   children,
-  className,
   title,
   scrollContainer = true,
 }: PageLayoutProps) => {
   return (
     <Container
       type={scrollContainer ? "scroll" : "view"}
-      className={`flex-1 px-5 pt-5 bg-background ${className} `}
+      className="flex-1 px-5 pt-5 bg-background"
     >
       {title && (
         <View className="mb-3">
@@ -44,7 +42,7 @@ const PageLayout = ({
         </View>
       )}
 
-      <View className="flex-1">{children}</View>
+      <View className="flex-1 pt-3">{children}</View>
     </Container>
   );
 };

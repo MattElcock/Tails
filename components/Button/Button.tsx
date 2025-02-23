@@ -60,7 +60,7 @@ const Button = ({
     <Pressable
       className={`flex-row gap-3 justify-center ${baseClass} ${buttonColorStyle} ${buttonSizeStyle} ${className}`}
       android_ripple={{ color: "" }}
-      onPress={onPress}
+      onPressOut={onPress}
     >
       {startIcon}
       <Text className={`${fontWeight} ${textSizeStyle}`}>{children}</Text>
