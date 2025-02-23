@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { HorizontalLine } from "@/components/HorizontalLine";
 import { Input } from "@/components/Input";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { PageLayout } from "@/layouts/PageLayout";
@@ -133,9 +134,9 @@ const LoginPage = () => {
         <View className="gap-3">
           <Login />
           <View className="flex-row items-center gap-3">
-            <View className="border-b-[1px] border-black flex-1" />
+            <HorizontalLine />
             <Text className="text-lg">Or</Text>
-            <View className="border-b-[1px] border-black flex-1" />
+            <HorizontalLine />
           </View>
           <CreateAccount />
         </View>
