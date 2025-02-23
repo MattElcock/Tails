@@ -1,8 +1,9 @@
 import useMe from "@/api/users/useMe";
 import { Button } from "@/components/Button";
-import auth from "@react-native-firebase/auth";
 import { LabelledValue } from "@/components/LabelledValue";
 import { PageLayout } from "@/layouts/PageLayout";
+import auth from "@react-native-firebase/auth";
+import { useRouter } from "expo-router";
 import {
   AtSign,
   FileText,
@@ -10,9 +11,8 @@ import {
   KeyRound,
   LogOut,
 } from "lucide-react-native";
-import { ReactNode, useReducer } from "react";
+import { ReactNode } from "react";
 import { Text, ToastAndroid, View } from "react-native";
-import { useRouter } from "expo-router";
 
 interface SectionProps {
   title: string;

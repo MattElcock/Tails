@@ -1,4 +1,4 @@
-import { ChevronRight, Lock } from "lucide-react-native";
+import { ChevronRight } from "lucide-react-native";
 import { ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
 
