@@ -8,10 +8,10 @@ import { Controller, useForm } from "react-hook-form";
 import { Text, ToastAndroid, View } from "react-native";
 
 interface FormFields {
-  firstName: string;
+  lastName: string;
 }
 
-const ChangeFirstName = () => {
+const ChangeLastName = () => {
   const { isLoading, data: me, isRefetching } = useMe();
   const { mutate } = useUpdateMe();
   const router = useRouter();
@@ -20,7 +20,7 @@ const ChangeFirstName = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>({ defaultValues: { firstName: me?.firstName } });
+  } = useForm<FormFields>({ defaultValues: { lastName: me?.lastName } });
 
   if (isLoading || isRefetching) {
     return <Text>Loading</Text>;
@@ -33,12 +33,12 @@ const ChangeFirstName = () => {
   const onSubmit = (data: FormFields) => {
     mutate(
       {
-        firstName: data.firstName,
+        lastName: data.lastName,
       },
       {
         onSuccess: () => {
           ToastAndroid.showWithGravity(
-            `Your first name has been changed to ${data.firstName}`,
+            `Your last name has been changed to ${data.lastName}`,
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           );
@@ -52,7 +52,7 @@ const ChangeFirstName = () => {
   };
 
   return (
-    <PageLayout title="Change first name">
+    <PageLayout title="Change last name">
       <View className="gap-5">
         <Controller
           control={control}
@@ -61,15 +61,15 @@ const ChangeFirstName = () => {
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-              label="First name"
+              label="Last name"
               type="text"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              errorMessage={errors.firstName?.message}
+              errorMessage={errors.lastName?.message}
             />
           )}
-          name="firstName"
+          name="lastName"
         />
         <Button
           variant="solid"
@@ -84,4 +84,4 @@ const ChangeFirstName = () => {
   );
 };
 
-export default ChangeFirstName;
+export default ChangeLastName;
