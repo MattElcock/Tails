@@ -67,7 +67,7 @@ const Welcome = () => {
   };
 
   return (
-    <PageLayout title="An important message">
+    <PageLayout title="An important message" scrollContainer={false}>
       <Stepper
         steps={[<StepOne />, <StepTwo />, <StepThree />]}
         onComplete={handleComplete}

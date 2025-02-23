@@ -10,6 +10,7 @@ export const petOptions = [
   { label: "Parrot", value: PetTypes.Parrot, hasFur: false },
 
   // Mammals
+  { label: "Dog", value: PetTypes.Dog, hasFur: true },
   { label: "Cat", value: PetTypes.Cat, hasFur: true },
   { label: "Chinchilla", value: PetTypes.Chinchilla, hasFur: true },
   { label: "Ferret", value: PetTypes.Ferret, hasFur: true },

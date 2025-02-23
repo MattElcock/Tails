@@ -39,11 +39,19 @@ const CheckboxInput = <TValue = string,>({
       <Text className={`text-xl ${errorMessage && "text-red-500"}`}>
         {label}
       </Text>
-      <FlatList
-        data={items}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <View className="flex-row gap-2 pb-2" style={{ width: 150 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: 5,
+        }}
+      >
+        {items.map((item) => (
+          <View
+            className="flex-row gap-2 pb-2"
+            style={{ width: 150 }}
+            key={item.label}
+          >
             <Checkbox
               value={value.includes(item.value)}
               onValueChange={(isChecked) =>
@@ -54,8 +62,9 @@ const CheckboxInput = <TValue = string,>({
             />
             <Text className="text-xl">{item.label}</Text>
           </View>
-        )}
-      />
+        ))}
+      </View>
+
       {errorMessage && <Text className="text-red-500">{errorMessage}</Text>}
     </View>
   );

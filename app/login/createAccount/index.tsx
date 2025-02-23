@@ -168,7 +168,7 @@ const CreateAccount = () => {
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-              label="Pasword"
+              label="Password"
               type="password"
               onBlur={onBlur}
               onChangeText={onChange}
