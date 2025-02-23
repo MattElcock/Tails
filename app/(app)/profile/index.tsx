@@ -57,6 +57,10 @@ const Profile = () => {
       });
   };
 
+  const handleChangeFirstNamePress = () => {
+    router.push("/(app)/profile/changeFirstName");
+  };
+
   return (
     <PageLayout title="Your profile">
       <View className="gap-5">
@@ -65,7 +69,7 @@ const Profile = () => {
             label="First name"
             value={me.firstName}
             iconStart={<IdCard />}
-            onPress={() => 0}
+            onPress={handleChangeFirstNamePress}
           />
           <LabelledValue
             label="Last name"
