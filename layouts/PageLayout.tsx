@@ -1,25 +1,41 @@
-import { Button } from "@/components/Button";
-import { Href, useRouter } from "expo-router";
-import { ArrowLeft } from "lucide-react-native";
+import { Href } from "expo-router";
 import { ReactNode } from "react";
-import { StatusBar, View, Text, ScrollView } from "react-native";
-
-interface BackLink {
-  href: Href;
-  text: string;
-}
+import { ScrollView, Text, View } from "react-native";
 
 interface PageLayoutProps {
   title?: ReactNode;
+  scrollContainer?: boolean;
   className?: string;
   children: ReactNode;
 }
 
-const PageLayout = ({ children, className, title }: PageLayoutProps) => {
+interface ContainerProps {
+  children: ReactNode;
+  type: "scroll" | "view";
+  className?: string;
+}
+
+const Container = ({ children, type, className }: ContainerProps) => {
+  if (type === "scroll") {
+    return <ScrollView className={className}>{children}</ScrollView>;
+  } else {
+    return <View className={className}>{children}</View>;
+  }
+};
+
+const PageLayout = ({
+  children,
+  className,
+  title,
+  scrollContainer = true,
+}: PageLayoutProps) => {
   return (
-    <View className={`flex-1 px-5 pt-5 bg-background gap-5 ${className} `}>
+    <Container
+      type={scrollContainer ? "scroll" : "view"}
+      className={`flex-1 px-5 pt-5 bg-background ${className} `}
+    >
       {title && (
-        <View>
+        <View className="mb-3">
           {typeof title === "string" ? (
             <Text className="text-3xl font-medium">{title}</Text>
           ) : (
@@ -29,7 +45,7 @@ const PageLayout = ({ children, className, title }: PageLayoutProps) => {
       )}
 
       <View className="flex-1">{children}</View>
-    </View>
+    </Container>
   );
 };
 

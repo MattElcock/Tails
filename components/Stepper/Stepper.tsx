@@ -47,7 +47,7 @@ const Stepper = ({ steps, onComplete }: StepperProps) => {
     <View className="flex-1">
       <View className="flex-row gap-5 justify-center">
         {steps.map((_, i) => (
-          <ProgressBar complete={i + 1 <= step} />
+          <ProgressBar key={`progress-${i}`} complete={i + 1 <= step} />
         ))}
       </View>
       <View className="flex-1 justify-center">{getStep()}</View>

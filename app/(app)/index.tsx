@@ -2,12 +2,12 @@ import useMe from "@/api/users/useMe";
 import { ListPets } from "@/containers/ListPets";
 import { PageLayout } from "@/layouts/PageLayout";
 import { Redirect } from "expo-router";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
 const App = () => {
-  const { isLoading, data: me } = useMe();
+  const { isLoading, data: me, isRefetching } = useMe();
 
-  if (isLoading) {
+  if (isLoading || isRefetching) {
     return <Text>Loading</Text>;
   }
 

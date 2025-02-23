@@ -19,7 +19,6 @@ const petAvatarMap: Partial<Record<PetTypes, ImageSourcePropType>> = {
   [PetTypes.Rat]: ratAvatar,
   [PetTypes.GuineaPig]: guineaPigAvatar,
   [PetTypes.Rabbit]: rabbitAvatar,
-  [PetTypes.Chinchilla]: birdAvatar,
   [PetTypes.Parrot]: birdAvatar,
   [PetTypes.Canary]: birdAvatar,
   [PetTypes.Finch]: birdAvatar,

@@ -28,6 +28,7 @@ const AddPet = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<FormFields>();
 
   const router = useRouter();
@@ -43,6 +44,7 @@ const AddPet = () => {
       },
       {
         onSuccess: () => {
+          reset();
           router.push("/(app)");
         },
         onError: (error) => {
