@@ -3,7 +3,13 @@ import { Button } from "@/components/Button";
 import auth from "@react-native-firebase/auth";
 import { LabelledValue } from "@/components/LabelledValue";
 import { PageLayout } from "@/layouts/PageLayout";
-import { LogOut } from "lucide-react-native";
+import {
+  AtSign,
+  FileText,
+  IdCard,
+  KeyRound,
+  LogOut,
+} from "lucide-react-native";
 import { ReactNode, useReducer } from "react";
 import { Text, ToastAndroid, View } from "react-native";
 import { useRouter } from "expo-router";
@@ -58,19 +64,31 @@ const Profile = () => {
           <LabelledValue
             label="First name"
             value={me.firstName}
+            iconStart={<IdCard />}
             onPress={() => 0}
           />
           <LabelledValue
             label="Last name"
             value={me.lastName}
+            iconStart={<IdCard />}
             onPress={() => 0}
           />
         </Section>
-        <Section title="Securtity">
-          <LabelledValue label="Email address" value={me.emailAddress} />
-          <LabelledValue label="Password" value="●●●" onPress={() => 0} />
+        <Section title="Security">
+          <LabelledValue
+            label="Email address"
+            value={me.emailAddress}
+            iconStart={<AtSign />}
+          />
+          <LabelledValue
+            label="Password"
+            value="●●●"
+            iconStart={<KeyRound />}
+            onPress={() => 0}
+          />
           <LabelledValue
             label="When you saw the app purpose disclaimer"
+            iconStart={<FileText />}
             value={
               me.seenAppPurposeDisclaimer
                 ? dateFormatter.format(new Date(me.seenAppPurposeDisclaimer))
