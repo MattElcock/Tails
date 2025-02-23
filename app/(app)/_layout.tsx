@@ -62,6 +62,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="profile"
         options={{
+          headerShown: false,
           title: "",
           headerRight: () => <React.Fragment />,
         }}

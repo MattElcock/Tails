@@ -10,19 +10,7 @@ export default function Layout() {
         statusBarStyle: "dark",
       }}
     >
-      <Stack.Screen
-        name="index"
-        options={{
-          title: "",
-        }}
-      />
-      <Stack.Screen
-        name="changeFirstName"
-        options={{
-          headerShown: false,
-          title: "",
-        }}
-      />
+      <Stack.Screen name="index" options={{ title: "" }} />
     </Stack>
   );
 }

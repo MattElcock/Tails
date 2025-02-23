@@ -35,7 +35,7 @@ const LabelledValue = ({
 
   if (onPress) {
     return (
-      <Pressable android_ripple={{ color: "" }}>
+      <Pressable android_ripple={{ color: "" }} onPressOut={onPress}>
         <View className={wrapperClass}>
           {content}
           <ChevronRight />
