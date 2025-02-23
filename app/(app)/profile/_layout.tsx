@@ -23,6 +23,13 @@ export default function Layout() {
           title: "",
         }}
       />
+      <Stack.Screen
+        name="changeLastName"
+        options={{
+          headerShown: false,
+          title: "",
+        }}
+      />
     </Stack>
   );
 }

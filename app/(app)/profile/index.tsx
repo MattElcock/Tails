@@ -61,6 +61,10 @@ const Profile = () => {
     router.push("/(app)/profile/changeFirstName");
   };
 
+  const handleChangeLastNamePress = () => {
+    router.push("/(app)/profile/changeLastName");
+  };
+
   return (
     <PageLayout title="Your profile">
       <View className="gap-5">
@@ -75,7 +79,7 @@ const Profile = () => {
             label="Last name"
             value={me.lastName}
             iconStart={<IdCard />}
-            onPress={() => 0}
+            onPress={handleChangeLastNamePress}
           />
         </Section>
         <Section title="Security">
