@@ -82,13 +82,6 @@ const AddPet = () => {
     resetField("subType");
   }, [type]);
 
-  // useEffect(() => {
-  //   const resetForm = () => {
-  //     reset();
-  //   };
-  //   return resetForm;
-  // }, []);
-
   const breedList = getBreeds(type);
 
   return (
