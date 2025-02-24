@@ -1,0 +1,15 @@
+export enum Rodent {
+  Chinchilla = "chinchilla",
+  Degu = "degu",
+  FancyMouse = "fancy_mouse",
+  FancyRat = "fancy_rat",
+  Gerbil = "gerbil",
+  GuineaPig = "guinea_pig",
+  Hamster = "hamster",
+  Hedgehog = "hedgehog",
+  Jerboa = "jerboa",
+  PygmyHedgehog = "pygmy_hedgehog",
+  PrairieDog = "prairie_dog",
+  Squirrel = "squirrel",
+  SugarGlider = "sugar_glider",
+}

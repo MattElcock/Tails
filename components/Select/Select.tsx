@@ -1,5 +1,7 @@
+import { ACCENT_COLOUR } from "@/constants";
 import { Picker } from "@react-native-picker/picker";
-import { View, Text } from "react-native";
+import { useRef } from "react";
+import { View, Text, Pressable } from "react-native";
 
 interface Item<TValue> {
   label: string;
@@ -12,6 +14,7 @@ interface SelectProps<TValue = string> {
   items: Item<TValue>[];
   label: string;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 const Select = ({
@@ -20,23 +23,34 @@ const Select = ({
   value,
   items,
   errorMessage,
+  disabled,
 }: SelectProps) => {
   return (
     <View className="gap-2">
-      <Text className={`text-xl ${errorMessage && "text-red-500"}`}>
+      <Text
+        className={`text-xl ${errorMessage && "text-red-500"} ${
+          disabled && "text-gray-500"
+        }`}
+      >
         {label}
       </Text>
-      <View className={`border ${errorMessage && "border-red-500"} rounded-lg`}>
+
+      <View
+        className={`border ${errorMessage && "border-red-500"} ${
+          disabled && "border-gray-500"
+        } rounded-lg`}
+      >
         <Picker
+          enabled={!disabled}
           selectedValue={value}
           onValueChange={(itemValue) => onChange(itemValue)}
           style={{ marginTop: -3, marginBottom: -3 }}
+          prompt={label}
         >
           <Picker.Item
-            label="Please select"
-            value=""
-            enabled={false}
-            style={{ fontSize: 18 }}
+            label="Please select..."
+            value={undefined}
+            color={disabled ? "gray" : undefined}
           />
           {items.map((item) => (
             <Picker.Item
@@ -48,6 +62,7 @@ const Select = ({
           ))}
         </Picker>
       </View>
+
       {errorMessage && <Text className="text-red-500">{errorMessage}</Text>}
     </View>
   );

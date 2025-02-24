@@ -1,21 +1,24 @@
+import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
-import {
-  FirestoreDocumentPet,
-  FurColours,
-  Permission,
-  PetTypes,
-} from "./types";
-import auth from "@react-native-firebase/auth";
-import { PETS_COLLECTION } from "./constants";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import { PETS_COLLECTION } from "./constants";
+import { FirestoreDocumentPet, Permission } from "./types";
+import { Colour } from "./types/colour";
+import { Pet } from "./types/pet";
+import { Cat } from "./types/cat";
+import { Dog } from "./types/dog";
+import { Rodent } from "./types/rodent";
+import { Reptile } from "./types/reptile";
+import { Bird } from "./types/bird";
 
 interface AddPetData {
   name: string;
-  type: PetTypes;
+  type: Pet;
+  subType: Cat | Dog | Rodent | Reptile | Bird;
   dateOfBirth: Date;
-  furColour?: FurColours[];
+  colour: Colour[];
 }
 
 const useAddPet = () => {
@@ -29,15 +32,13 @@ const useAddPet = () => {
     const reqData: FirestoreDocumentPet = {
       name: pet.name,
       type: pet.type,
+      subType: pet.subType,
       dateOfBirth: pet.dateOfBirth,
+      colour: pet.colour,
       sharedWith: {
         [firestoreUser.uid]: Permission.Admin,
       },
     };
-
-    if (pet.furColour) {
-      reqData.furColour = pet.furColour;
-    }
 
     await firestore().collection(PETS_COLLECTION).doc(uuidv4()).set(reqData);
   };

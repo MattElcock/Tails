@@ -1,5 +1,10 @@
-import { furColourOptions, petOptions } from "@/api/pets/constants";
-import { FurColours, PetTypes } from "@/api/pets/types";
+import { Bird } from "@/api/pets/types/bird";
+import { Cat } from "@/api/pets/types/cat";
+import { Colour } from "@/api/pets/types/colour";
+import { Dog } from "@/api/pets/types/dog";
+import { Pet } from "@/api/pets/types/pet";
+import { Reptile } from "@/api/pets/types/reptile";
+import { Rodent } from "@/api/pets/types/rodent";
 import useAddPet from "@/api/pets/useAddPet";
 import { Button } from "@/components/Button";
 import { CheckboxInput } from "@/components/CheckboxInput";
@@ -8,19 +13,34 @@ import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
 import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
 
+const getBreeds = (type: Pet | undefined) => {
+  switch (type) {
+    case Pet.Cat:
+      return Object.values(Cat);
+    case Pet.Dog:
+      return Object.values(Dog);
+    case Pet.Rodent:
+      return Object.values(Rodent);
+    case Pet.Bird:
+      return Object.values(Bird);
+    case Pet.Reptile:
+      return Object.values(Reptile);
+    default:
+      return [];
+  }
+};
+
 interface FormFields {
   name: string;
-  type: PetTypes;
+  type: Pet;
+  subType: Cat | Dog | Rodent | Reptile | Bird;
+  colour: Colour[];
   dateOfBirth: Date;
-  furColour: FurColours[];
 }
-
-const sortedPetOptions = petOptions.sort((a, b) => {
-  return a.label.toLowerCase().localeCompare(b.label.toLowerCase());
-});
 
 const AddPet = () => {
   const {
@@ -29,6 +49,7 @@ const AddPet = () => {
     formState: { errors },
     watch,
     reset,
+    resetField,
   } = useForm<FormFields>();
 
   const router = useRouter();
@@ -39,8 +60,9 @@ const AddPet = () => {
       {
         name: data.name,
         type: data.type,
+        subType: data.subType,
+        colour: data.colour,
         dateOfBirth: data.dateOfBirth,
-        furColour: data.furColour,
       },
       {
         onSuccess: () => {
@@ -55,7 +77,12 @@ const AddPet = () => {
   };
 
   const type = watch("type");
-  const hasFur = sortedPetOptions.find((pet) => pet.value === type)?.hasFur;
+
+  useEffect(() => {
+    resetField("subType");
+  }, [type]);
+
+  const breedList = getBreeds(type);
 
   return (
     <PageLayout title="Add a pet">
@@ -87,31 +114,51 @@ const AddPet = () => {
               label="Type"
               onChange={onChange}
               value={value || ""}
-              items={sortedPetOptions}
+              items={Object.values(Pet).map((pet) => ({
+                label: pet,
+                value: pet,
+              }))}
               errorMessage={errors.type?.message}
             />
           )}
           name="type"
         />
-
-        {hasFur && (
-          <Controller
-            control={control}
-            rules={{
-              required: "Required",
-            }}
-            render={({ field: { onChange, value } }) => (
-              <CheckboxInput<FurColours>
-                label="Fur Colour"
-                items={furColourOptions}
-                onChange={onChange}
-                value={value || []}
-                errorMessage={errors.furColour?.message}
-              />
-            )}
-            name="furColour"
-          />
-        )}
+        <Controller
+          control={control}
+          rules={{
+            required: "Required",
+          }}
+          render={({ field: { onChange, value } }) => (
+            <Select
+              disabled={type === undefined}
+              label="Breed"
+              onChange={onChange}
+              value={value || ""}
+              items={breedList.map((breed) => ({ label: breed, value: breed }))}
+              errorMessage={errors.type?.message}
+            />
+          )}
+          name="subType"
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: "Required",
+          }}
+          render={({ field: { onChange, value } }) => (
+            <CheckboxInput<Colour>
+              label="Colour"
+              items={Object.values(Colour).map((colour) => ({
+                label: colour,
+                value: colour,
+              }))}
+              onChange={onChange}
+              value={value || []}
+              errorMessage={errors.colour?.message}
+            />
+          )}
+          name="colour"
+        />
         <Controller
           control={control}
           rules={{

@@ -1,46 +1,10 @@
-export enum PetTypes {
-  // Mammals
-  Cat = "cat",
-  Dog = "dog",
-  Hamster = "hamster",
-  Rat = "rat",
-  GuineaPig = "guineaPig",
-  Rabbit = "rabbit",
-  Ferret = "ferret",
-  Chinchilla = "chinchilla",
-  Hedgehog = "hedgehog",
-
-  // Birds
-  Parrot = "parrot",
-  Canary = "canary",
-  Finch = "finch",
-  Budgie = "budgie",
-  Cockatiel = "cockatiel",
-  Macaw = "macaw",
-
-  // Reptiles
-  Tortoise = "tortoise",
-  Turtle = "turtle",
-  Gecko = "gecko",
-  Iguana = "iguana",
-  Snake = "snake",
-  Chameleon = "chameleon",
-}
-
-export enum FurColours {
-  Black = "black",
-  White = "white",
-  Brown = "brown",
-  Grey = "grey",
-  Cream = "cream",
-  Ginger = "ginger",
-  Chocolate = "chocolate",
-  Golden = "golden",
-  Blue = "blue", // e.g., Russian Blue cats
-  Red = "red", // e.g., Irish Setter dogs
-  Silver = "silver",
-  Fawn = "fawn",
-}
+import { Bird } from "./types/bird";
+import { Cat } from "./types/cat";
+import { Colour } from "./types/colour";
+import { Dog } from "./types/dog";
+import { Pet } from "./types/pet";
+import { Reptile } from "./types/reptile";
+import { Rodent } from "./types/rodent";
 
 export enum Permission {
   View = "view",
@@ -54,8 +18,9 @@ export interface UserPermission {
 
 export interface FirestoreDocumentPet {
   name: string;
-  type: PetTypes;
+  type: Pet;
+  subType: Cat | Dog | Rodent | Reptile | Bird;
   dateOfBirth: Date;
-  furColour?: FurColours[];
+  colour?: Colour[];
   sharedWith: UserPermission;
 }
