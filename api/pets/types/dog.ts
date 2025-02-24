@@ -25,7 +25,7 @@ export enum Dog {
   JackRussellTerrier = "jack_russell_terrier",
   LabradorRetriever = "labrador_retriever",
   Maltese = "maltese",
-  Mixed = "Mixed",
+  MixedBreed = "mixed_breed",
   Newfoundland = "newfoundland",
   PembrokeWelshCorgi = "pembroke_welsh_corgi",
   Poodle = "poodle",
