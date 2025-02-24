@@ -1,33 +1,25 @@
-import { ACCENT_COLOUR } from "@/constants";
+import createScreenOptions from "@/utils/createScreenOptions";
 import { Stack } from "expo-router";
 
 export default function Layout() {
+  const screenOptions = createScreenOptions({
+    backConfig: { href: "/(app)", text: "home" },
+    showProfileButton: false,
+  });
+
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: ACCENT_COLOUR },
-        statusBarBackgroundColor: ACCENT_COLOUR,
-        statusBarStyle: "dark",
-      }}
-    >
-      <Stack.Screen
-        name="index"
-        options={{
-          title: "",
-        }}
-      />
+    <Stack screenOptions={screenOptions}>
+      <Stack.Screen name="index" options={{}} />
       <Stack.Screen
         name="changeFirstName"
         options={{
           headerShown: false,
-          title: "",
         }}
       />
       <Stack.Screen
         name="changeLastName"
         options={{
           headerShown: false,
-          title: "",
         }}
       />
     </Stack>

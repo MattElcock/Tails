@@ -1,24 +1,9 @@
 import useCheckSession from "@/api/authentication/useCheckSession";
-import { ACCENT_COLOUR } from "@/constants";
+import createScreenOptions from "@/utils/createScreenOptions";
 import auth from "@react-native-firebase/auth";
-import { Redirect, Stack, useRouter } from "expo-router";
-import { User } from "lucide-react-native";
+import { Redirect, Stack } from "expo-router";
 import React from "react";
-import { Pressable, Text } from "react-native";
-
-const ProfileButton = () => {
-  const router = useRouter();
-
-  const handlePress = () => {
-    router.push("/(app)/profile");
-  };
-
-  return (
-    <Pressable onPressOut={handlePress}>
-      <User />
-    </Pressable>
-  );
-};
+import { Text } from "react-native";
 
 export default function AppLayout() {
   const user = auth().currentUser;
@@ -36,35 +21,27 @@ export default function AppLayout() {
     return <Redirect href="/login" />;
   }
 
+  const screenOptions = createScreenOptions({});
+
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: ACCENT_COLOUR },
-        statusBarBackgroundColor: ACCENT_COLOUR,
-        statusBarStyle: "dark",
-        headerRight: () => <ProfileButton />,
-      }}
-    >
-      <Stack.Screen name="welcome" options={{ title: "" }} />
-
+    <Stack screenOptions={screenOptions}>
+      <Stack.Screen name="index" />
       <Stack.Screen
-        name="index"
-        options={{ title: "", headerLeft: () => <React.Fragment /> }}
+        name="welcome"
+        options={{
+          headerRight: () => <React.Fragment />,
+        }}
       />
-
       <Stack.Screen
         name="addPet"
         options={{
-          title: "",
+          headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="profile"
         options={{
           headerShown: false,
-          title: "",
-          headerRight: () => <React.Fragment />,
         }}
       />
     </Stack>
