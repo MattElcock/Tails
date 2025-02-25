@@ -15,7 +15,7 @@ import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 
 const getBreeds = (type: Pet | undefined) => {
   switch (type) {
@@ -70,7 +70,12 @@ const AddPet = () => {
           router.push("/(app)");
         },
         onError: (error) => {
-          console.error(error);
+          ToastAndroid.showWithGravity(
+            "Oops! Something went wrong. Please try again or contact us for support.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
+          console.error("Error adding pet:", error.message, error);
         },
       }
     );

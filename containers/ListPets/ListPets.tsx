@@ -1,20 +1,26 @@
 import useListPets from "@/api/pets/useListPets";
-import { Text, View } from "react-native";
+import { Text, ToastAndroid, View } from "react-native";
 import { Empty } from "./components/Empty";
 import { List } from "./components/List";
 import { Button } from "@/components/Button";
 import { useRouter } from "expo-router";
+import { Loading } from "../Loading";
 
 const ListPets = () => {
   const { isLoading, data, error } = useListPets();
   const router = useRouter();
 
   if (isLoading) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   if (!data || error) {
-    console.error(error);
+    ToastAndroid.showWithGravity(
+      "Oops! Something went wrong. Please try again or contact us for support.",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM
+    );
+    console.error("Error listing pets:", error);
     return <Text>Error</Text>;
   }
 

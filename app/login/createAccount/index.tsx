@@ -1,12 +1,13 @@
 import useCreateUser from "@/api/users/createUser";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { Loading } from "@/containers/Loading";
 import { PageLayout } from "@/layouts/PageLayout";
 import auth from "@react-native-firebase/auth";
 import { useRouter } from "expo-router";
 import { CheckCircle, Circle } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
-import { Text, View } from "react-native";
+import { Text, ToastAndroid, View } from "react-native";
 
 interface FormFields {
   firstName: string;
@@ -80,28 +81,54 @@ const CreateAccount = () => {
               router.push("/(app)");
             },
             onError: (error) => {
-              console.error(error);
+              ToastAndroid.showWithGravity(
+                "Oops! Something went wrong. Please try again or contact us for support.",
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM
+              );
+              console.error(
+                "Error creating account in firestore:",
+                error.message,
+                error
+              );
             },
           }
         );
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
-          console.log("That email address is already in use!");
+          ToastAndroid.showWithGravity(
+            "An account with this email address already exists.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
         }
 
         if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
+          ToastAndroid.showWithGravity(
+            "Please use a valid email address.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
         }
 
-        console.error(error);
+        ToastAndroid.showWithGravity(
+          "Oops! Something went wrong. Please try again or contact us for support.",
+          ToastAndroid.LONG,
+          ToastAndroid.BOTTOM
+        );
+        console.error(
+          "Error creating account in firebase:",
+          error.message,
+          error
+        );
       });
   };
 
   const password = watch("password");
 
   if (isPending) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   return (

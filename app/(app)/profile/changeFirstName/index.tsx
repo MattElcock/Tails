@@ -46,7 +46,12 @@ const ChangeFirstName = () => {
           router.push("/(app)/profile");
         },
         onError: (error) => {
-          console.error(error);
+          ToastAndroid.showWithGravity(
+            "Oops! Something went wrong. Please try again or contact us for support.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
+          console.error("Error updating first name:", error.message, error);
         },
       }
     );

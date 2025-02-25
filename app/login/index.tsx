@@ -38,7 +38,12 @@ const Login = () => {
             ToastAndroid.BOTTOM
           );
         } else {
-          console.error(error);
+          ToastAndroid.showWithGravity(
+            "Oops! Something went wrong. Please try again or contact us for support.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
+          console.error("Error logging in:", error.message, error);
         }
       });
   };
