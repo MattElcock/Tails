@@ -3,7 +3,7 @@ import { Stepper } from "@/components/Stepper";
 import { PageLayout } from "@/layouts/PageLayout";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, ToastAndroid, View } from "react-native";
 
 const StepOne = () => {
   return (
@@ -60,6 +60,11 @@ const Welcome = () => {
           router.replace("/(app)");
         },
         onError: (error) => {
+          ToastAndroid.showWithGravity(
+            "Oops! Something went wrong. Please try again or contact us for support.",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          );
           console.error(error);
         },
       }

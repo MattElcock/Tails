@@ -1,4 +1,5 @@
 import useCheckSession from "@/api/authentication/useCheckSession";
+import { Loading } from "@/containers/Loading";
 import createScreenOptions from "@/utils/createScreenOptions";
 import auth from "@react-native-firebase/auth";
 import { Redirect, Stack } from "expo-router";
@@ -14,7 +15,7 @@ export default function AppLayout() {
   }
 
   if (isLoading) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   if (!isSessionValid) {
