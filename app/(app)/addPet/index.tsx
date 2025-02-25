@@ -75,7 +75,7 @@ const AddPet = () => {
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           );
-          console.error(error);
+          console.error("Error adding pet:", error.message, error);
         },
       }
     );

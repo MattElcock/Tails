@@ -20,7 +20,7 @@ const ListPets = () => {
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM
     );
-    console.error(error);
+    console.error("Error listing pets:", error);
     return <Text>Error</Text>;
   }
 

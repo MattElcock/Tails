@@ -43,7 +43,7 @@ const Login = () => {
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           );
-          console.error(error);
+          console.error("Error logging in:", error.message, error);
         }
       });
   };

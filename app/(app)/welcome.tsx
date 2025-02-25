@@ -65,7 +65,11 @@ const Welcome = () => {
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           );
-          console.error(error);
+          console.error(
+            "Error setting appPurposeDisclaimer:",
+            error.message,
+            error
+          );
         },
       }
     );

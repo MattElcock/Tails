@@ -86,7 +86,11 @@ const CreateAccount = () => {
                 ToastAndroid.LONG,
                 ToastAndroid.BOTTOM
               );
-              console.error(error);
+              console.error(
+                "Error creating account in firestore:",
+                error.message,
+                error
+              );
             },
           }
         );
@@ -113,7 +117,11 @@ const CreateAccount = () => {
           ToastAndroid.LONG,
           ToastAndroid.BOTTOM
         );
-        console.error(error);
+        console.error(
+          "Error creating account in firebase:",
+          error.message,
+          error
+        );
       });
   };
 

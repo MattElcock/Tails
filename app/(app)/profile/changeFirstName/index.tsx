@@ -51,7 +51,7 @@ const ChangeFirstName = () => {
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           );
-          console.error(error);
+          console.error("Error updating first name:", error.message, error);
         },
       }
     );
